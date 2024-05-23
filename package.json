@@ -26,5 +26,6 @@
     "prisma": "^4.11.0",
     "tinyspy": "^2.2.1",
     "vite-node": "^1.6.0"
-  }
+  },
+  "packageManager": "pnpm@5.18.10+sha256.c6271412d4adb4531dd9d45b8e7fc0d0c6d3574bf6900745fefdc2a189f59713"
 }

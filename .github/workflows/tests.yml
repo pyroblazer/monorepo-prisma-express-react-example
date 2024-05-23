@@ -7,6 +7,8 @@ env:
   DATABASE_URL: postgres://postgres:postgres@localhost:5432/quotes
   VITE_API_URL: http://localhost:3000
   API_SECRET: secretvalue
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+  PLAYWRIGHT_BROWSERS_PATH: 0
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
@@ -14,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/build
       - name: Run tests
-        run: pnpm test:backend:unit
+        run: pnpm test:backend:unit -w
   integration-tests:
     runs-on: ubuntu-latest
     steps:
@@ -22,4 +24,14 @@ jobs:
       - uses: ./.github/actions/build
       - uses: ./.github/actions/docker-compose
       - name: Run tests
-        run: pnpm run test:backend:int
+        run: sudo pnpm run test:backend:int -w
+  e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/build
+      - uses: ./.github/actions/docker-compose
+      - name: Install Playwright
+        run: cd e2e && sudo npx playwright install --with-deps
+      - name: Run tests
+        run: sudo pnpm test:e2e

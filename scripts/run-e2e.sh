@@ -9,5 +9,3 @@ if [ "$#" -eq  "0" ]
 else
     pnpm playwright test --headed
 fi
-
-pnpm playwright show-report
