@@ -1,5 +1,7 @@
 name: 'Build'
 description: 'Sets up the repository'
+env:
+  NODE_ENV: prod
 runs:
   using: 'composite'
   steps:
